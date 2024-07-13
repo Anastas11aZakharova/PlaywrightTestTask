@@ -1,4 +1,8 @@
 # PlaywrightTestTask
+
+## Latest test results
+Available at https://anastas11azakharova.github.io/PlaywrightTestTask/
+
 ## summary
 5 test cases for https://www.redmine.org/ website
 
