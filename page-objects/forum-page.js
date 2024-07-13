@@ -14,18 +14,18 @@ exports.ForumPage = class ForumPage {
 
     constructor(page) {
         this.page = page;
-        this.openDiscussionLink = page.locator(boardsLocator ).getByRole('link', { name: openDiscussionLocator, exact: true });
-        this.helpLink = page.locator(boardsLocator ).getByRole('link', { name: helpLocator, exact: true });
-        this.developmentLink = page.locator(boardsLocator ).getByRole('link', { name: developmentLocator, exact: true });
-        this.pluginsLink = page.locator(boardsLocator ).getByRole('link', { name: pluginsLocator, exact: true });
-        this.jobOffersLink = page.locator(boardsLocator ).getByRole('link', { name:jobOffersLocator, exact: true });
+        this.openDiscussionLink = page.locator(boardsLocator).getByRole('link', { name: openDiscussionLocator, exact: true });
+        this.helpLink = page.locator(boardsLocator).getByRole('link', { name: helpLocator, exact: true });
+        this.developmentLink = page.locator(boardsLocator).getByRole('link', { name: developmentLocator, exact: true });
+        this.pluginsLink = page.locator(boardsLocator).getByRole('link', { name: pluginsLocator, exact: true });
+        this.jobOffersLink = page.locator(boardsLocator).getByRole('link', { name: jobOffersLocator, exact: true });
 
     }
 
 
     async goto() {
         await this.page.goto('https://www.redmine.org/');
-      }
-      
+    }
+
 
 }
