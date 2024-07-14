@@ -21,7 +21,7 @@ test('help link', async ({ page }) => {
   await homePage.clickOnHelpLink();
 
   // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Redmine guide', exact: true })).toBeVisible();
 });
 
 test('search by id', async ({ page }) => {
