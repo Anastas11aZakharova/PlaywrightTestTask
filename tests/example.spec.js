@@ -1,8 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { HomePage } = require('../page-objects/home-page')
-const { ForumPage } = require('../page-objects/forum-page')
-const { RegisterPage } = require('../page-objects/register-page')
+const { HomePage } = require('../page-objects/home-page');
+const { ForumPage } = require('../page-objects/forum-page');
+const { RegisterPage } = require('../page-objects/register-page');
+const { SignInPage } = require('../page-objects/signIn-page');
 
 test('has title', async ({ page }) => {
   const homePage = new HomePage(page);
@@ -54,6 +55,26 @@ test('forum boards', async ({ page }) => {
   await expect(forumPage.developmentLink).toBeVisible();
   await expect(forumPage.pluginsLink).toBeVisible();
   await expect(forumPage.jobOffersLink).toBeVisible();
+});
+
+test('login with invalid login and password', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.goto();
+
+  // Click the sign in link.
+  await homePage.clickOnSignInLink();
+
+  // Expects page to have a button with the name of "Login".
+  await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+  const signInPage = new SignInPage(page);
+
+  // Enter random invalid login and password.
+  await signInPage.enterRandomInvalidLogin();
+  await signInPage.enterRandomInvalidPassword();
+  await signInPage.clickOnLoginButton();
+
+  // Expects page to have an error message "Invalid user or password".
+  await expect(page.getByText('Invalid user or password')).toBeVisible();
 });
 
 test('invalid email check on register page', async ({ page }) => {
