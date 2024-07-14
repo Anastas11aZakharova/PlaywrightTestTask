@@ -1,10 +1,12 @@
 const { expect } = require('@playwright/test');
+const { HomePage } = require('./home-page');
 const emailFieldLocator = 'id=user_mail';
 const submitButtonLocator = 'Submit';
 
 
-exports.RegisterPage = class RegisterPage {
+exports.RegisterPage = class RegisterPage extends HomePage{
     constructor(page) {
+        super(page);
         this.page = page;
         this.emailField = page.locator(emailFieldLocator);
         this.submitButton = page.getByRole('button', { name: submitButtonLocator });
@@ -14,7 +16,7 @@ exports.RegisterPage = class RegisterPage {
 
 
     async enterRandomInvalidEmail() {
-        await this.emailField.fill(createRandomString(5));
+        await this.emailField.fill(super.createRandomString(5));
     }
 
     async clickOnSubmitButton() {
@@ -25,11 +27,3 @@ exports.RegisterPage = class RegisterPage {
 
 }
 
-function createRandomString(length) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
