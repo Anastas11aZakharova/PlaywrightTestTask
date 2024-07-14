@@ -27,7 +27,7 @@ test('help link', async ({ page }) => {
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
   await homePage.goto();
-  
+
   // Generate random number
   let randomId = createRandomNumber(4);
 
@@ -83,7 +83,7 @@ test('invalid email check on register page', async ({ page }) => {
 
   // Click the register link.
   await homePage.clickOnRegisterLink();
-  
+
   // Expects page to have a heading with the name of Register.
   await expect(page.getByRole('heading', { name: 'Register' })).toBeVisible();
   const registerPage = new RegisterPage(page);

@@ -4,7 +4,7 @@ const emailFieldLocator = 'id=user_mail';
 const submitButtonLocator = 'Submit';
 
 
-exports.RegisterPage = class RegisterPage extends HomePage{
+exports.RegisterPage = class RegisterPage extends HomePage {
     constructor(page) {
         super(page);
         this.page = page;

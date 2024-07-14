@@ -6,7 +6,7 @@ const loginButtonLocator = 'Login';
 
 
 
-exports.SignInPage = class SignInPage extends HomePage{
+exports.SignInPage = class SignInPage extends HomePage {
     constructor(page) {
         super(page);
         this.page = page;
@@ -17,17 +17,17 @@ exports.SignInPage = class SignInPage extends HomePage{
 
 
 
-async enterRandomInvalidLogin() {
-    await this.loginField.fill(super.createRandomString(10));
-}
+    async enterRandomInvalidLogin() {
+        await this.loginField.fill(super.createRandomString(10));
+    }
 
-async enterRandomInvalidPassword() {
-    await this.passwordField.fill(super.createRandomString(10));
-}
+    async enterRandomInvalidPassword() {
+        await this.passwordField.fill(super.createRandomString(10));
+    }
 
-async clickOnLoginButton() {
-    await this.loginButton.click();
-  }
+    async clickOnLoginButton() {
+        await this.loginButton.click();
+    }
 }
 
 
