@@ -14,12 +14,6 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Redmine/);
 });
 
-test('help link', async ({ page }) => {
-  const homePage = new HomePage(page);
-  await homePage.clickOnHelpLink();
-  await expect(page.getByRole('heading', { name: 'Redmine guide', exact: true })).toBeVisible();
-});
-
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
   await page.addInitScript({
@@ -66,3 +60,8 @@ test('invalid email check on register page', async ({ page }) => {
   await expect(page.getByText('Email is invalid')).toBeVisible();
 });
 
+test('help link', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.clickOnHelpLink();
+  await expect(page.getByRole('heading', { name: 'Redmine guide', exact: true })).toBeVisible();
+});
