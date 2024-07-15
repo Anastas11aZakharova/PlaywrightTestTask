@@ -27,17 +27,7 @@ test('login with invalid login and password', async ({ page }) => {
 
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
-  await page.addInitScript({
-    content: `window['ga-disable-GA_MEASUREMENT_ID'] = true;`,
-  });
-  await page.reload();
   await homePage.clickOnIssuesLink();
-  await page.reload();
-  await page.route("**/*", route => {
-    route.request().url().includes("#google_vignette") ?
-      route.abort() : route.continue();
-    return;
-  })
   await expect(page.getByRole('heading', { name: 'Issues', exact: true })).toBeVisible();
   const issuesPage = new IssuesPage(page);
   let type = await issuesPage.getFirstTypeFromTable();
