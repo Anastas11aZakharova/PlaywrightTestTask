@@ -14,6 +14,17 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Redmine/);
 });
 
+test('login with invalid login and password', async ({ page }) => {
+  const homePage = new HomePage(page);
+  await homePage.clickOnSignInLink();
+  await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
+  const signInPage = new SignInPage(page);
+  await signInPage.enterRandomInvalidLogin();
+  await signInPage.enterRandomInvalidPassword();
+  await signInPage.clickOnLoginButton();
+  await expect(page.getByText('Invalid user or password')).toBeVisible();
+});
+
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
   await page.addInitScript({
@@ -35,16 +46,6 @@ test('search by id', async ({ page }) => {
 
 });
 
-test('login with invalid login and password', async ({ page }) => {
-  const homePage = new HomePage(page);
-  await homePage.clickOnSignInLink();
-  await expect(page.getByRole('button', { name: 'Login' })).toBeVisible();
-  const signInPage = new SignInPage(page);
-  await signInPage.enterRandomInvalidLogin();
-  await signInPage.enterRandomInvalidPassword();
-  await signInPage.clickOnLoginButton();
-  await expect(page.getByText('Invalid user or password')).toBeVisible();
-});
 
 test('invalid email check on register page', async ({ page }) => {
   const homePage = new HomePage(page);
