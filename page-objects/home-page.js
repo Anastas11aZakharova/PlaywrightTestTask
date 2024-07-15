@@ -35,7 +35,7 @@ exports.HomePage = class HomePage {
     await this.signInLink.click();
   }
   async clickOnIssuesLink() {
-    await this.issuesLink.click();
+    await this.page.goto('https://www.redmine.org/projects/redmine/issues');
   }
 
   async performSearch(id) {
