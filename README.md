@@ -17,10 +17,10 @@ Available at https://anastas11azakharova.github.io/PlaywrightTestTask/
 
 ## steps to launch:
 ```
-npx playwright test
+npm run headless
 ```
 
 ## steps to creating the report:
 ```
-npx allure serve allure-results
+npm run allure:report
 ```
