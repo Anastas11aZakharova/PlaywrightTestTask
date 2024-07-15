@@ -12,6 +12,7 @@ test.beforeEach( async ({ page }) => {
 
 test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Redmine/);
+  page.reload();
 });
 
 test('help link', async ({ page }) => {
