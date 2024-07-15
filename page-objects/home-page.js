@@ -1,19 +1,21 @@
 const { expect } = require('@playwright/test');
 const helpLinkText = 'Help';
-const forumLinkText = 'Forums';
 const registerLinkText = 'Register';
 const searchFieldLocator = 'id=q';
 const signInLinkText = 'Sign in';
+const issuesLinkText = 'Issues';
+
 
 exports.HomePage = class HomePage {
 
   constructor(page) {
     this.page = page;
     this.helpLink = page.getByRole('link', { name: helpLinkText, exact: true });
-    this.forumLink = page.getByRole('link', { name: forumLinkText, exact: true });
     this.registerLink = page.getByRole('link', { name: registerLinkText, exact: true });
     this.searchField = page.locator(searchFieldLocator)
     this.signInLink = page.getByRole('link', { name: signInLinkText, exact: true });
+    this.issuesLink = page.getByRole('link', { name: issuesLinkText, exact: true });
+
 
   }
 
@@ -25,16 +27,15 @@ exports.HomePage = class HomePage {
     await this.helpLink.click();
   }
 
-  async clickOnForumLink() {
-    await this.forumLink.click();
-  }
-
   async clickOnRegisterLink() {
     await this.registerLink.click();
   }
 
   async clickOnSignInLink() {
     await this.signInLink.click();
+  }
+  async clickOnIssuesLink() {
+    await this.issuesLink.click();
   }
 
   async performSearch(id) {

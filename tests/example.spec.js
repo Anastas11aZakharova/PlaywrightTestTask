@@ -1,9 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { HomePage } = require('../page-objects/home-page');
-const { ForumPage } = require('../page-objects/forum-page');
 const { RegisterPage } = require('../page-objects/register-page');
 const { SignInPage } = require('../page-objects/signIn-page');
+const { IssuesPage } = require('../page-objects/issues-page');
 
 test.beforeEach( async ({ page }) => {
   const homePage = new HomePage(page);
@@ -22,9 +22,15 @@ test('help link', async ({ page }) => {
 
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
-  let randomId = createRandomNumber(4);
-  await homePage.performSearch(randomId);
-  await expect(page.getByRole('heading', { name: 'Feature #' + randomId })).toBeVisible();
+  await homePage.clickOnIssuesLink();
+  await expect(page.getByRole('heading', { name: 'Issues', exact: true })).toBeVisible();
+  const issuesPage = new IssuesPage(page);
+  let type = await issuesPage.getFirstTypeFromTable();
+  let id = await issuesPage.getFirstIdFromTable();
+  await homePage.performSearch(id)
+  await expect(page.getByRole('heading', { name: type+ ' #'+id})).toBeVisible();
+
+
 });
 
 test('login with invalid login and password', async ({ page }) => {
@@ -52,11 +58,3 @@ test('invalid email check on register page', async ({ page }) => {
   await expect(page.getByText('Email is invalid')).toBeVisible();
 });
 
-function createRandomNumber(length) {
-  const chars = "123456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
