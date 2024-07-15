@@ -23,9 +23,5 @@ exports.ForumPage = class ForumPage {
     }
 
 
-    async goto() {
-        await this.page.goto('https://www.redmine.org/');
-    }
-
 
 }

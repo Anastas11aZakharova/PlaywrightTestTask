@@ -11,15 +11,9 @@ Available at https://anastas11azakharova.github.io/PlaywrightTestTask/
 - java
 
 ## steps to install:
-```
-npm init playwright@latest
-npm install --save-dev allure-commandline
-npm install --save-dev allure-playwright
-```
-add Allure Playwright as a reporter -- in config.js: add 
-```
-reporter: [["line"], ["allure-playwright"]]
-```
+1. Clone repository
+2. ``` npm install ```
+3. ``` npx playwright install --with-deps ```
 
 ## steps to launch:
 ```

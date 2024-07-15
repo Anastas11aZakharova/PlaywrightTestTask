@@ -1,8 +1,11 @@
 {
-  "name": "playwrite",
+  "name": "playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "headless": "npx playwright test",
+    "allure:report": "npx allure serve allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
