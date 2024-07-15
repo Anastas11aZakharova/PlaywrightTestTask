@@ -23,6 +23,9 @@ test('help link', async ({ page }) => {
 
 test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
+  await page.addInitScript({
+    content: `window['ga-disable-GA_MEASUREMENT_ID'] = true;`,
+  });
   await homePage.clickOnIssuesLink();
   await page.route("**/*", route => {
     route.request().url().includes("#google_vignette") ?
