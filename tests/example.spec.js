@@ -24,6 +24,11 @@ test('search by id', async ({ page }) => {
   const homePage = new HomePage(page);
   await homePage.clickOnIssuesLink();
   await expect(page.getByRole('heading', { name: 'Issues', exact: true })).toBeVisible();
+  await page.route("**/*", route => {
+    route.request().url().includes("#google_vignette") ?
+      route.abort() : route.continue();
+    return;
+  })
   const issuesPage = new IssuesPage(page);
   let type = await issuesPage.getFirstTypeFromTable();
   let id = await issuesPage.getFirstIdFromTable();
