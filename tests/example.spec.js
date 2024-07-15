@@ -30,7 +30,9 @@ test('search by id', async ({ page }) => {
   await page.addInitScript({
     content: `window['ga-disable-GA_MEASUREMENT_ID'] = true;`,
   });
+  await page.reload();
   await homePage.clickOnIssuesLink();
+  await page.reload();
   await page.route("**/*", route => {
     route.request().url().includes("#google_vignette") ?
       route.abort() : route.continue();
